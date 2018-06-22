@@ -37,11 +37,7 @@ class Form extends React.Component {
       this.handleCreate();
     }
   }
-
-  handleUpdate = () => {
-    const { name, memo, feeling } = this.state;
-  }
-
+  
   render() {
     const {name, memo, feeling} = this.state
 

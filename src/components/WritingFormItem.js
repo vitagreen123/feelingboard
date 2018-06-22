@@ -25,7 +25,7 @@ class ItemEdit extends Component {
   }
 
   render() {
-    const { onEditClick, onEditCancel} = this.props
+    const {onEditCancel} = this.props
     const {name, memo, feeling} = this.state
 
     return (
@@ -33,7 +33,7 @@ class ItemEdit extends Component {
         <div>
           이름 : <input name='name' value={name} onChange={this.handleChange} /> <br />
           메모 :  <input name='memo' value={memo} onChange={this.handleChange} /> <br />
-          기분 : <RadioGroup radios={feelingRadios} value={this.state.feeling} onChange={(key) => this.setState({feeling: key})} /> <br />
+          기분 : <RadioGroup radios={feelingRadios} value={feeling} onChange={(key) => this.setState({feeling: key})} /> <br />
         </div>
         <div className="update-button" onClick={onEditCancel}>취소</div>
         <div className="update-button" onClick={this.handleSave}>저장</div>

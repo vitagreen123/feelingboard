@@ -42,7 +42,7 @@ class ItemEdit extends Component {
   }
 }
 
-class WritingFormItem extends Component {
+class ListItem extends Component {
   render() {
     const { 
       data: {name, memo, feeling, checked, id}, 
@@ -80,4 +80,4 @@ class WritingFormItem extends Component {
   }
 }
 
-export default WritingFormItem;
+export default ListItem;

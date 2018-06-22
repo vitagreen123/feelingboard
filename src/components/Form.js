@@ -1,12 +1,21 @@
 import React from 'react';
+import RadioGroup from './RadioGroup'
 import './Form.css';
-import Radio from './components/Radio';
+
+const feelingDefault = 'GOOD'
+const feelingRadios = [
+  {key:'GREAT', label: 'Great'},
+  {key:'GOOD', label: 'Good'},
+  {key:'SOSO', label: 'Soso'},
+  {key:'BAD', label: 'Bad'},
+  {key:'TERRIBLE', label: 'Terrible'},
+]
 
 class Form extends React.Component {
   state = {
     name: '',
     memo: '',
-    feeling: ''
+    feeling: feelingDefault
   }
 
   handleChange = (e) => {
@@ -25,7 +34,7 @@ class Form extends React.Component {
     this.setState({
       name: '',
       memo: '',
-      feeling: ''
+      feeling: feelingDefault
     })
   }
 
@@ -37,7 +46,6 @@ class Form extends React.Component {
 
   handleUpdate = () => {
     const { name, memo, feeling } = this.state;
-
   }
 
   render() {
@@ -45,15 +53,16 @@ class Form extends React.Component {
 
     return (
       <div className="form">
-        <div> 이름 <input type='text' name="name" value={name} onChange={this.handleChange} onKeyPress={this.handleEnter}/> 
-        <br />
-        메모 <input name='memo'  value={memo} onChange={this.handleChange} onKeyPress={this.handleEnter}/> <br /> 
-        기분 <input name='feeling' value={feeling} onChange={this.handleChange} onKeyPress={this.handleEnter}/> 
-        <Radio />
-
-
-
-
+        <div> 
+          <div>
+            이름 <input type='text' name="name" value={name} onChange={this.handleChange} onKeyPress={this.handleEnter}/> 
+          </div>
+          <div>
+            메모 <input name='memo'  value={memo} onChange={this.handleChange} onKeyPress={this.handleEnter}/> <br /> 
+          </div>
+          <div>
+            기분 <RadioGroup radios={feelingRadios} value={feeling} onChange={(key) => this.setState({feeling: key})} />
+          </div>
         </div>
       
         <div className="create-button" onClick={this.handleCreate}>

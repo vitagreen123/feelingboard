@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import Form from './components/Form';
-import WritingFormItemList from './components/WritingFormItemList';
+import WritingFormItem from './components/WritingFormItem'
 import './components/WritingFormTemplate.css';
 
 
-let id = 1
+let id = 5
 
 class App extends Component {
   state = {
+    editId: undefined,
     writings: [
-      {id : 0, name: ' 정병권', memo: ' 메모', 기분: ' 기분 좋음', checked: false }
+      {id : 2, name: 'John', memo: 'test', feeling: 'SOSO', checked: true},
+      {id : 3, name: 'Jack', memo: 'hello', feeling: 'GOOD', checked: false},
+      {id : 4, name: 'Jim', memo: 'world', feeling: 'GREAT', checked: true},
     ]
   }
 
@@ -46,6 +49,16 @@ class App extends Component {
     });
   }
 
+  updateListItem = (id, {name, memo, feeling}) => {
+    const newList = this.state.writings.slice()
+    const item = newList.find(item=>item.id===id)
+    item.name = name
+    item.memo = memo
+    item.feeling = feeling
+
+    this.setState({writings: newList, editId: undefined})
+  }
+
   handleRemove = (id) => {
     this.setState({
       writings: this.state.writings.filter(w => w.id !== id)
@@ -54,7 +67,7 @@ class App extends Component {
 
 
   render() {
-    const {writings} = this.state
+    const {writings, editId} = this.state
 
     return (
       <main className="writing-form-template">
@@ -67,11 +80,17 @@ class App extends Component {
           />
         </section>
         <section className="writings-wrapper">
-          <WritingFormItemList 
-            writings={writings} 
-            onToggle={this.handleToggle} 
-            onRemove={this.handleRemove} 
-          />
+          {writings.map((data) => (
+            <WritingFormItem
+              key={data.id}
+              data={data}
+              edit={data.id === editId}
+              onEditClick={(id)=> this.setState({editId: id})}
+              onEditSave={this.updateListItem}
+              onEditCancel={() => this.setState({editId: null})}
+              onRemove={()=>this.handleRemove(data.id)}
+            />
+          ))}
         </section>
       </main>
     );

@@ -1,15 +1,9 @@
 import React from 'react';
 import RadioGroup from './RadioGroup'
+import {feelingDefault, feelingRadios} from '../feeling'
 import './Form.css';
 
-const feelingDefault = 'GOOD'
-const feelingRadios = [
-  {key:'GREAT', label: 'Great'},
-  {key:'GOOD', label: 'Good'},
-  {key:'SOSO', label: 'Soso'},
-  {key:'BAD', label: 'Bad'},
-  {key:'TERRIBLE', label: 'Terrible'},
-]
+
 
 class Form extends React.Component {
   state = {

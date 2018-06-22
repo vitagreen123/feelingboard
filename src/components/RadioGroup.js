@@ -3,7 +3,7 @@ import React from 'react'
 const RadioGroup = ({radios, value, onChange}) => (
   <React.Fragment>
     {radios.map(({key, label}) =>(
-      <label>
+      <label key={key}>
         <input 
           type="radio"
           checked={value===key} 
